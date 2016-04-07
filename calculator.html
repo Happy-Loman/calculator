@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.0.0-alpha1.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Simple Calculator</title>
+  <style type="text/css">
+  	@import url(https://fonts.googleapis.com/css?family=Exo:100);
+*{
+    font-family: 'Exo', sans-serif;
+    font-weight:900;
+	transition:all 0.2s;
+}
+#calculator{
+    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.4)));
+    width:325px;
+	height:365px;
+	padding:15px;
+	text-align:center;
+	border-radius:4px;
+	box-shadow:0px 4px 5px #aaaaaa;
+	background-color:rgb(149, 189, 269);
+	position:absolute;
+	top:-90px;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+}
+.calculator_input{
+    margin-top:0px;
+	width:300px;
+	height:34px;
+	color:white;
+	text-align:right;
+	font-size:18px;
+	background-color:rgb(10, 10, 10);
+	box-shadow:inset 0px 2px 4px 1px #ffffff;
+}
+.calculator_input:focus{
+	height:38px;
+}
+.oprations{
+	background-color:#222222 !important;
+	color:white !important;
+	border:2px solid #222222 !important;
+} 
+.commands{
+    background-color:rgb(190, 67, 87) !important;
+	color:white !important;
+	border:2px solid rgb(170, 87, 87) !important;
+}
+.clicked{
+	background-color:rgba(190, 79, 79, 0.9) !important;
+	border:2px solid rgba(190, 79, 79, 0.4) !important;
+}
+.calculator_symbol{
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+	width:66px;
+	padding-bottom:5px;
+	padding-top:8px;
+	position:relative;
+	top:0px;
+	border:2px solid #eeeeee;
+	border-radius:5px;
+	box-shadow:0px 4px 5px #aaaaaa;
+	display:inline-block;
+	margin:1px;
+	margin-top:15px;
+	cursor:pointer;
+	color:#222222;
+	background-color:white;
+}
+.calculator_symbol:active{
+    top:2px;
+    box-shadow:0px 4px 5px #222222;
+}
+  </style> 
+</head>
+<body>
+  <div id="calculator">
+	  <h1>Claculator</h1>
+      <input type="text" class="calculator_input" maxlength="15" readonly>
+	  <div id="symbol_7" class="calculator_symbol numbers">7</div>
+	  <div id="symbol_8" class="calculator_symbol numbers">8</div>
+	  <div id="symbol_9" class="calculator_symbol numbers">9</div>
+	  <div id="symbol_+" class="calculator_symbol oprations">+</div>
+	  <div id="symbol_4" class="calculator_symbol numbers">4</div>
+	  <div id="symbol_5" class="calculator_symbol numbers">5</div>
+	  <div id="symbol_6" class="calculator_symbol numbers">6</div>
+	  <div id="symbol_-" class="calculator_symbol oprations">-</div>
+	  <div id="symbol_1" class="calculator_symbol numbers">1</div>
+	  <div id="symbol_2" class="calculator_symbol numbers">2</div>
+	  <div id="symbol_3" class="calculator_symbol numbers">3</div>
+	  <div id="symbol_*" class="calculator_symbol oprations">*</div>
+	  <div id="symbol_0" class="calculator_symbol numbers">0</div>
+	  <div id="symbol_c" class="calculator_symbol commands">C</div>
+	  <div id="symbol_=" class="calculator_symbol commands">=</div>
+	  <div id="symbol_/" class="calculator_symbol oprations">/</div>
+  </div>
+  <script type="text/javascript">
+var display_number = "";
+var operate_with = 0;
+var curr_number = 0;
+var curr_oprations = "";
+var operation = false;
+var answer = 0;
+function numberWithCommas(x) {
+    var parts = x.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+	
+var math_it_up = {
+    '+': function (x, y) { return x + y; },
+    '-': function (x, y) { return x - y; },
+	'*': function (x, y) { return x * y; },
+    '/': function (x, y) { return x / y; }
+};
+//console.log(math_it_up['/'](1, 2));
+$(".numbers").click(function(){
+	var id = $(this).attr('id'); 
+	if(display_number.length <= 15){
+		display_number += Number(id[id.length - 1]);
+	}
+	if(operation){
+		operate_with = Number(display_number);//Number(id[id.length - 1]);
+	} else {
+	  curr_number = Number(display_number);//Number(id[id.length - 1]);	
+	}
+	console.log(display_number);
+	$(".calculator_input").val(numberWithCommas(display_number));
+});
+var old_id = "";
+$(".oprations").click(function(){
+    operation = true;
+	display_number = "";
+	var id = $(this).attr('id');
+	//if(old_id == id){
+		$(this).toggleClass("clicked");
+		$(old_id).toggleClass("clicked");
+	//}
+	old_id = this;
+    curr_oprations = id[id.length - 1];
+});
+$(".commands").click(function(){
+	var id = $(this).attr('id');
+	if(id == "symbol_="){
+		operation = true;
+	    compute(curr_oprations);
+		curr_number = answer;
+	    display_number = "";
+	} else {
+		//Clear everything//
+		display_number = "";
+        origonal_number = 0;
+        curr_number = 0;
+        operation = false;
+        answer = 0;
+		$(".calculator_input").val("");
+		$(old_id).toggleClass("clicked");
+		old_id = "";
+	}
+});
+function compute(symbol){
+	if(symbol == "+"){
+		answer = curr_number + operate_with;
+		$(".calculator_input").val(numberWithCommas(answer));
+	} else if(symbol == "-"){
+		answer = curr_number - operate_with;
+		$(".calculator_input").val(numberWithCommas(answer));
+	} else if(symbol == "*"){
+		answer = curr_number * operate_with;
+		$(".calculator_input").val(numberWithCommas(answer));
+	} else if(symbol == "/"){
+		answer = curr_number / operate_with;
+		$(".calculator_input").val(numberWithCommas(answer));
+	} else {
+		return false;
+	}
+}
+window.setInterval(function(){
+	console.log("Curr:" + curr_number);
+	console.log("last: " + origonal_number);
+}, 1000);
+  </script>
+</body>
+</html>
