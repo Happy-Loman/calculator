@@ -10,23 +10,30 @@
 *{
     font-family: 'Exo', sans-serif;
     font-weight:900;
-	transition:all 0.2s;
+	transition:all 0.1s;
+}
+body{
+	background-color:rgb(200, 60, 60);
+	color:white;
+}
+h1{
 }
 #calculator{
-    -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(250, 250, 250, 0.4)));
-    width:325px;
-	height:365px;
+    width:395px;
+	height:600px;
 	padding:15px;
 	text-align:center;
-	border-radius:4px;
-	box-shadow:0px 4px 5px #aaaaaa;
-	background-color:rgb(149, 189, 269);
+	border-radius:10px;
+	background-color:rgb(180, 60, 60);
 	position:absolute;
-	top:-90px;
+	top:70px;
 	bottom:0;
 	left:0;
 	right:0;
 	margin:auto;
+}
+#calc_symbol_container{
+	margin-top:0px;
 }
 .calculator_input{
     margin-top:0px;
@@ -34,12 +41,9 @@
 	height:34px;
 	color:white;
 	text-align:right;
-	font-size:18px;
-	background-color:rgb(10, 10, 10);
-	box-shadow:inset 0px 2px 4px 1px #ffffff;
-}
-.calculator_input:focus{
-	height:38px;
+	background-color:rgb(180, 60, 60);
+	font-size:25px;
+	border: 0px solid red;
 }
 .oprations{
 	background-color:#222222 !important;
@@ -49,11 +53,11 @@
 .commands{
     background-color:rgb(190, 67, 87) !important;
 	color:white !important;
-	border:2px solid rgb(170, 87, 87) !important;
+	border:2px solid rgb(180, 60, 60) !important;
 }
 .clicked{
-	background-color:rgba(190, 79, 79, 0.9) !important;
-	border:2px solid rgba(190, 79, 79, 0.4) !important;
+	border:2px solid white !important;
+	background-color:rgba(79, 79, 190, 0.9) !important;
 }
 .calculator_symbol{
     user-select: none;
@@ -63,133 +67,181 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-	width:66px;
-	padding-bottom:5px;
-	padding-top:8px;
+	width:68px;
+	height:64px;
+	line-height: 64px;
 	position:relative;
 	top:0px;
-	border:2px solid #eeeeee;
-	border-radius:5px;
-	box-shadow:0px 4px 5px #aaaaaa;
+	border:2px solid rgb(180, 60, 60);
 	display:inline-block;
-	margin:1px;
+	margin:5px;
 	margin-top:15px;
 	cursor:pointer;
-	color:#222222;
-	background-color:white;
+	color:white;
+	background-color:rgb(180, 60, 60);
+	font-size:20px;
+}
+.calculator_symbol:hover{
+    box-shadow:4px 4px 5px #222222;
+    border:2px solid white;
 }
 .calculator_symbol:active{
-    top:2px;
-    box-shadow:0px 4px 5px #222222;
+	top:5px;
+    box-shadow:2px 2px 3px #222222;
+    border:2px solid white;
 }
   </style> 
 </head>
 <body>
-  <div id="calculator">
-	  <h1>Calculator</h1>
-      <input type="text" class="calculator_input" maxlength="15" readonly>
-	  <div id="symbol_7" class="calculator_symbol numbers">7</div>
-	  <div id="symbol_8" class="calculator_symbol numbers">8</div>
-	  <div id="symbol_9" class="calculator_symbol numbers">9</div>
-	  <div id="symbol_+" class="calculator_symbol oprations">+</div>
-	  <div id="symbol_4" class="calculator_symbol numbers">4</div>
-	  <div id="symbol_5" class="calculator_symbol numbers">5</div>
-	  <div id="symbol_6" class="calculator_symbol numbers">6</div>
-	  <div id="symbol_-" class="calculator_symbol oprations">-</div>
-	  <div id="symbol_1" class="calculator_symbol numbers">1</div>
-	  <div id="symbol_2" class="calculator_symbol numbers">2</div>
-	  <div id="symbol_3" class="calculator_symbol numbers">3</div>
-	  <div id="symbol_*" class="calculator_symbol oprations">*</div>
-	  <div id="symbol_0" class="calculator_symbol numbers">0</div>
-	  <div id="symbol_c" class="calculator_symbol commands">C</div>
-	  <div id="symbol_=" class="calculator_symbol commands">=</div>
-	  <div id="symbol_/" class="calculator_symbol oprations">/</div>
+	<div id="calculator">
+	<h1>CALCULATOR</h1>
+		<br>
+		<input type="text" class="calculator_input" maxlength="15" readonly>
+		<div id="calc_symbol_container">
+	  		<div id="symbol_c" class="calculator_symbol commands">C</div>
+	  		<div id="symbol_-" class="calculator_symbol special_oprations">-</div>
+	  		<div id="symbol_%" class="calculator_symbol special_oprations">%</div>
+	  		<div id="symbol_*" class="calculator_symbol oprations">*</div>
+			<div id="symbol_7" class="calculator_symbol numbers">7</div>
+	  		<div id="symbol_8" class="calculator_symbol numbers">8</div>	
+			<div id="symbol_9" class="calculator_symbol numbers">9</div>
+	  		<div id="symbol__" class="calculator_symbol oprations">_</div>
+			<div id="symbol_4" class="calculator_symbol numbers">4</div>
+	  		<div id="symbol_5" class="calculator_symbol numbers">5</div>
+	  		<div id="symbol_6" class="calculator_symbol numbers">6</div>
+	  		<div id="symbol_+" class="calculator_symbol oprations">+</div>
+	  		<div id="symbol_1" class="calculator_symbol numbers">1</div>
+	  		<div id="symbol_2" class="calculator_symbol numbers">2</div>
+	  		<div id="symbol_3" class="calculator_symbol numbers">3</div>
+	  		<div id="symbol_/" class="calculator_symbol oprations">/</div>
+	  		<div id="symbol_0" class="calculator_symbol numbers">0</div>
+	  		<div id="symbol_p" class="calculator_symbol numbers">&pi;</div>
+	  		<div id="symbol_." class="calculator_symbol special_oprations">.</div>
+	  		<div id="symbol_=" class="calculator_symbol commands">=</div>
+	  	</div>
   </div>
   <script type="text/javascript">
-var display_number = "";
-var operate_with = 0;
-var curr_number = 0;
-var curr_oprations = "";
-var operation = false;
-var answer = 0;
+
+var problem = [0, "+", 0];
+var curr_Number = 0;
+var clicked_operation = false; //test for when and operaiton has been clicked
+var clicked_number = false; // check for when a number.
+
 function numberWithCommas(x) {
     var parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return parts.join(".");
 }
-	
-var math_it_up = {
+
+//perform a specific operation
+var perform_operation = {
     '+': function (x, y) { return x + y; },
-    '-': function (x, y) { return x - y; },
+    '_': function (x, y) { return x - y; },
 	'*': function (x, y) { return x * y; },
     '/': function (x, y) { return x / y; }
 };
-//console.log(math_it_up['/'](1, 2));
-$(".numbers").click(function(){
-	var id = $(this).attr('id'); 
-	if(display_number.length <= 15){
-		display_number += Number(id[id.length - 1]);
-	}
-	if(operation){
-		operate_with = Number(display_number);//Number(id[id.length - 1]);
-	} else {
-	  curr_number = Number(display_number);//Number(id[id.length - 1]);	
-	}
-	console.log(display_number);
-	$(".calculator_input").val(numberWithCommas(display_number));
-});
-var old_id = "";
-$(".oprations").click(function(){
-    operation = true;
-	display_number = "";
-	var id = $(this).attr('id');
-	//if(old_id == id){
-		$(this).toggleClass("clicked");
-		$(old_id).toggleClass("clicked");
-	//}
-	old_id = this;
-    curr_oprations = id[id.length - 1];
-});
-$(".commands").click(function(){
-	var id = $(this).attr('id');
-	if(id == "symbol_="){
-		operation = true;
-	    compute(curr_oprations);
-		curr_number = answer;
-	    display_number = "";
-	} else {
-		//Clear everything//
-		display_number = "";
-        origonal_number = 0;
-        curr_number = 0;
-        operation = false;
-        answer = 0;
-		$(".calculator_input").val("");
-		$(old_id).toggleClass("clicked");
-		old_id = "";
-	}
-});
-function compute(symbol){
-	if(symbol == "+"){
-		answer = curr_number + operate_with;
-		$(".calculator_input").val(numberWithCommas(answer));
-	} else if(symbol == "-"){
-		answer = curr_number - operate_with;
-		$(".calculator_input").val(numberWithCommas(answer));
-	} else if(symbol == "*"){
-		answer = curr_number * operate_with;
-		$(".calculator_input").val(numberWithCommas(answer));
-	} else if(symbol == "/"){
-		answer = curr_number / operate_with;
-		$(".calculator_input").val(numberWithCommas(answer));
-	} else {
-		return false;
-	}
+
+//perform operation on frist number
+var perform_specialOperation = {
+	'%': function (x) {number_clicked = x/100; return x/100;},
+	'-': function (x) {number_clicked = x * -1; return x * -1;},
+	'.': function (x) {
+			if(Number(x) % 1 === 0){
+				number_clicked = x+".";
+				$(".calculator_input").val(numberWithCommas(number_clicked));
+				return x;
+			}
+			return 0;
+		}
 }
+
+var number_clicked = "";
+$(".numbers").click(function(){
+	clicked_number = true;
+	var id = $(this).attr('id'); 
+
+	//If an operaiton is not clicked set number 1 to number clicked
+
+	/////exampt pi/////
+	if(id == "symbol_p"){
+		problem[curr_Number] = Math.PI;
+		$(".calculator_input").val(numberWithCommas(problem[curr_Number]));
+		return 0;
+	}
+	///////////////////
+	if(number_clicked.length <= 10){
+		number_clicked += Number(id[id.length - 1]);
+		problem[curr_Number] = Number(number_clicked);
+		//display current number
+		$(".calculator_input").val(numberWithCommas(problem[curr_Number]));
+	}
+	
+	console.log(number_clicked);
+	//number_clicked = problem[curr_Number];
+});
+
+var old_id;
+$(".oprations").click(function(){
+	//If number has not been clicked then no operation. 
+	if(!clicked_number){
+		return 0;
+	}
+
+	problem[2] = problem[0];
+	var id = $(this).attr('id');
+
+	//Set this current clicked opperation to class "clicked"
+	$(this).toggleClass("clicked");
+	$(old_id).toggleClass("clicked");
+	old_id = this;
+    problem[1] = id[id.length - 1];
+    number_clicked = "";
+    clicked_operation = true;
+});
+
+var curr_special_oprations = "";
+$(".special_oprations").click(function(){
+	var id = $(this).attr('id');
+	curr_special_oprations = id[id.length - 1];
+	problem[curr_Number] =  (perform_specialOperation[curr_special_oprations](problem[curr_Number]));
+	$(".calculator_input").val(numberWithCommas(number_clicked));
+})
+
+$(".commands").click(function(){
+	var command = $(this).attr('id');
+	if(command == "symbol_="){
+	    problem[0] = perform_operation[problem[1]](problem[0], problem[2]);
+	    $(".calculator_input").val(numberWithCommas(problem[0]));
+	    clicked_operation = false;
+	    number_clicked = "";
+	} else if(command == "symbol_c"){
+		//Clear everything//
+		problem = [0, "+", 0];
+		number_clicked = "";
+		clicked_operation = false; //test for when and operaiton has been clicked
+		clicked_number = false; // check for when a number.
+		$(".calculator_input").val("");
+		//$(command).toggleClass("clicked");
+		//command = "";
+		$(old_id).removeClass("clicked");
+	}
+});
+console.log(perform_operation[problem[1]](problem[0], problem[2]));
+
 window.setInterval(function(){
-	console.log("Curr:" + curr_number);
-	console.log("last: " + origonal_number);
+	if(!clicked_operation){
+		curr_Number = 0;
+	} else {
+		curr_Number = 2;
+	}
+	
+}, 1);
+
+window.setInterval(function(){
+	console.log(problem);
 }, 1000);
+
+
   </script>
 </body>
 </html>
